@@ -20,15 +20,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 
-env = environ.Env(DEBUG=(bool, True))
+# env = environ.Env(DEBUG=(bool, True))
+env = environ.Env()
+environ.Env.read_env()
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = env('SECRET_KEY')
-SECRET_KEY = 'z4#0jl@lqt@n@+kx1dv_o54!&fv4zo_#_c9bq&_x%n#zu70jg^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = env('DEBUG')
-DEBUG = True
+DEBUG = env('DEBUG')
+# DEBUG = False
 ALLOWED_HOSTS = ['*']
 
 
