@@ -22,7 +22,7 @@ class Post(models.Model):
 class Comment(models.Model):
     user = models.ForeignKey(User, related_name='comment_by', on_delete=models.CASCADE)
     post = models.ForeignKey(Post, related_name='post_comment', on_delete=models.CASCADE)
-    detail = models.TextField(max_length=200, blank=False)
+    comment = models.TextField(max_length=200, blank=False)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
@@ -30,9 +30,18 @@ class Comment(models.Model):
         return self.detail
 
 
-class Like(models.Model):
+class PostLike(models.Model):
     user = models.ForeignKey(User, related_name='like_by', on_delete=models.CASCADE)
-    comment = models.ForeignKey(Post, related_name='comment_like', on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, related_name='post_likes', on_delete=models.CASCADE)
     like = models.BooleanField(max_length=1, default=False)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+
+
+# class Like(models.Model):
+#     user = models.ForeignKey(User, related_name='like_by', on_delete=models.CASCADE)
+#     comment = models.ForeignKey(Post, related_name='comment_like', on_delete=models.CASCADE)
+#     like = models.BooleanField(max_length=1, default=False)
+#     created = models.DateTimeField(auto_now_add=True)
+#     updated = models.DateTimeField(auto_now=True)
+#
